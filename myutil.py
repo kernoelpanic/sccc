@@ -122,7 +122,8 @@ def compile_and_deploy_contract(path, account=None, concise=True, patch_api=True
     """ compiles and deploy the given contract (from the ./contracts folder)
         returns the contract instance
     """
-    connect()
+    if not w3 or not w3.isConnected :
+        connect()
     if account is None:
         account = w3.eth.accounts[0]
         w3.eth.defaultAccount = account
