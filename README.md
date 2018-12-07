@@ -1,0 +1,2 @@
+# sccc
+Smart Contract CrashCourse
