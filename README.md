@@ -51,7 +51,7 @@ $ bash docker_run_smartcode.sh
 ### 4. start working ###
 Connect to the `jupyter` instance by opening a browser and enter the token printed in the console output.
 
-[http://127.0.0.1):8888](http://127.0.0.1:8888)
+[http://127.0.0.1:8888](http://127.0.0.1:8888)
 
 You can also directly connect to the running `smartcode` container and get a shell in there
 ```
