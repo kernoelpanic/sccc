@@ -18,12 +18,12 @@ def connect(host=None,port=None,poa=False):
         host=HOST
     if port is None:
         port=PORT
-    if w3 is None or not w3.isConnected:
+    if w3 is None or not w3.isConnected():
         w3 = web3.Web3(web3.HTTPProvider(f"http://{host}:{port}"))
         if poa:
             # inject PoA compatibility
             w3.middleware_stack.inject(geth_poa_middleware, layer=0)
-    assert w3.isConnected
+    assert w3.isConnected()
     return w3
 
 
@@ -122,7 +122,7 @@ def compile_and_deploy_contract(path, account=None, concise=True, patch_api=True
     """ compiles and deploy the given contract (from the ./contracts folder)
         returns the contract instance
     """
-    if not w3 or not w3.isConnected :
+    if not w3 or not w3.isConnected():
         connect()
     if account is None:
         account = w3.eth.accounts[0]
