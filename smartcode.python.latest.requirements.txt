@@ -1,17 +1,23 @@
-# smart contract related 
+## smart contract related ##
 web3 
 py-solc
 eth-testrpc
 
-# other python dependencies
+## dependencies for interaction with ethereuem ##
 py-ecc
 pytest
 sympy
 ipython
 jupyter
 
-# dev 
+## dependencies for trie ##
+leveldb
+
+## dev ##
 pylint
 rope
 black
+# to create venvs 
+virtualenv
+
 

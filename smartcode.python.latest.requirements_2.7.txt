@@ -1,0 +1,10 @@
+## dependencies for interaction with ethereuem ##
+ipython
+jupyter
+
+## dependencies for trie ##
+leveldb
+bitcoin
+sha3
+
+
