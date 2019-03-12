@@ -1,10 +1,10 @@
-## dependencies for interaction with ethereuem ##
+## dependencies for explorative usage ##
 ipython
 jupyter
 
-## dependencies for trie ##
+## dependencies for trie examples ##
 leveldb
 bitcoin
-sha3
+pysha3
 
 

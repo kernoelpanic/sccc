@@ -3,15 +3,16 @@ web3
 py-solc
 eth-testrpc
 
-## dependencies for interaction with ethereuem ##
+## dependencies for interaction with ethereum client ##
 py-ecc
 pytest
 sympy
 ipython
 jupyter
 
-## dependencies for trie ##
+## dependencies for interaction with ethereum directly ##
 leveldb
+pyethereum 
 
 ## dev ##
 pylint
