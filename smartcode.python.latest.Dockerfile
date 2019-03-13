@@ -42,7 +42,7 @@ RUN apt-get install -y build-essential pkg-config autoconf libtool libssl-dev li
 # Required system tools 
 RUN apt-get install -y git wget
 # Additional system tools 
-RUN apt-get install -y vim iputils-ping netcat iproute2
+RUN apt-get install -y vim iputils-ping netcat iproute2 sudo
 
 # get recent solc version
 # currently the latest version starting with 4.something

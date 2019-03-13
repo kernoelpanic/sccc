@@ -1,7 +1,7 @@
 ## smart contract related ##
 web3 
 py-solc
-eth-testrpc
+#eth-testrpc
 
 ## dependencies for interaction with ethereum client ##
 py-ecc
@@ -12,7 +12,7 @@ jupyter
 
 ## dependencies for interaction with ethereum directly ##
 leveldb
-pyethereum 
+ethereum # pyethereum 
 
 ## dev ##
 pylint
