@@ -18,7 +18,7 @@ Development environment setup and challenge environment setup will be based on d
 Therefore we strongly recommend a Linux based operating system as a base layer e.g., Ubuntu. 
 
 There will be two docker containers:
-* One container runs the blockchain client i.e., `ganache` or `geth`
+* One container runs the blockchain client i.e., `ganache`,`parity` or `geth`
 * One container runs our custom development environment for the tutorial and the following project/exercise (`smartcode`) 
 
 ### 0. clone this repository
