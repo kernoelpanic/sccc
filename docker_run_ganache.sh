@@ -5,4 +5,5 @@ docker run \
   --net smartnet \
   --hostname ganache \
   --ip 172.18.0.2 \
-  -it trufflesuite/ganache-cli:latest
+  -it trufflesuite/ganache-cli:latest -d --gasLimit 80000000 --allowUnlimitedContractSize  
+  #-it trufflesuite/ganache-cli:latest --gasLimit 8000000 --allowUnlimitedContractSize  
