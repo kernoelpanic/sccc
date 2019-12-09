@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.12;
 
 contract Greeter {
     string public greeting;
@@ -11,24 +11,23 @@ contract Greeter {
         greeting = 'Hello';
     }
 
-    function setGreeting(string _greeting) public {
+    function setGreeting(string memory _greeting) public {
         greeting = _greeting;
     }
 
-    function greet() view public returns (string) {
+    function greet() view public returns (string memory) {
         return greeting;
     }
 
-    function setGreetbit(uint256 bit) public {
-        greetbit = bit;
+    function setGreetbit(uint256 _bit) public {
+        greetbit = _bit;
     }
 
-    function greetbit() view public returns (uint256) {
+    function getGreetbit() view public returns (uint256) {
         return greetbit; 
     }
 
-    function() public payable{
+    function() external payable{
         greetbit = greetbit ^ 1;
     }
-
 }
