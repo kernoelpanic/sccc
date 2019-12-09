@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.12;
 
 contract Visibility {
     uint256 constant public cpub_int = 0x10; //set at compile time
@@ -43,10 +43,11 @@ contract Visibility {
     }
 
     // view:
-    // * Not modify any state (only enforced by compiler since 0.5.0!)
+    // * Not modify any state (only enforced by compiler since 0.5.0!) 
+    //   Enforced by STATICALL at runtime since byzantium. 
     function view_priv_int(uint256 v) view public returns (uint256) {
-        priv_int = v;
-        return priv_int;
+        //priv_int = v; 
+        return v + priv_int;
     }
    
     // pure:

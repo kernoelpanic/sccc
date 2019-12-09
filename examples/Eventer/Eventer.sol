@@ -1,4 +1,4 @@
-pragma solidity ^0.4.25;
+pragma solidity ^0.5.12;
 
 contract Eventer {
 
@@ -19,7 +19,7 @@ contract Eventer {
         emit funcall2(msg.sender,v);
     }
 
-    function() public payable{
+    function() external payable{
         emit fallcall(msg.sender);
     }
 
