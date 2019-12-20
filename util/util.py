@@ -1,6 +1,7 @@
 import web3
+import web3.auto as web3auto
 from web3.middleware import geth_poa_middleware
-import solc
+
 import time
 import threading
 import hashlib
@@ -13,8 +14,6 @@ w3 = None
 HOST="127.0.0.1"
 PORT="8545"
 
-cache = {}
-
 def connect(host=None,port=None,poa=False):
     global w3
     if host is None:
@@ -26,9 +25,9 @@ def connect(host=None,port=None,poa=False):
         if poa:
             # inject PoA compatibility
             # the new way
-            #w3 = web3.auto.gethdev.w3
+            w3.middleware_onion.inject(geth_poa_middleware, layer=0)
             # inject the old way:
-            w3.middleware_stack.inject(geth_poa_middleware, layer=0)
+            #w3.middleware_stack.inject(geth_poa_middleware, layer=0)
     assert w3.isConnected(), "Connecting to local Ethereum node failed!"
     return w3
 
@@ -45,6 +44,7 @@ def compile_contract_with_libs(compiler_path,src_path,account=None,gas=None):
     output = subprocess.run([compiler_path,"--combined-json","abi,bin",src_path],capture_output=True)
     if output.returncode != 0:
         print("Error: Compiling contract")
+        print(output)
         return None
     compiler_output = json.loads(output.stdout)
 
@@ -159,7 +159,7 @@ def get_contract_instance(
         print("No ABI or path to source given")
         return None
     elif path is not None:
-        cabi=compile_contract(path)["abi"]
+        cabi=compile_contract_with_libs("solc",path)["abi"]
 
     if concise:
         instance = w3.eth.contract(
@@ -221,18 +221,17 @@ def compile_and_deploy_contract(path,
     if not w3 or not w3.isConnected():
         connect()
     if account is None:
-        account = w3.eth.accounts[0]
-        w3.eth.defaultAccount = account
+        if w3.isAddress(w3.eth.defaultAccount):
+            account = w3.eth.defaultAccount
+        else:
+            account = w3.eth.accounts[0]
+            w3.eth.defaultAccount = account
 
-    if compiler is not None:
-        # compile manually
-        interface = compile_contract_with_libs(compiler_path=compiler,
-                                               src_path=path,
-                                               account=None,
-                                               gas=None)
-    else:
-        # compile w3py style
-        interface = compile_contract(path)
+    # compile manually
+    interface = compile_contract_with_libs(compiler_path=compiler,
+                                           src_path=path,
+                                           account=account,
+                                           gas=gas)
 
     ret = deploy_contract(
                 cabi=interface["abi"],

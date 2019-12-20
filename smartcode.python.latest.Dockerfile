@@ -35,7 +35,7 @@ RUN apt-get install -y python3.7 python3.7-dev \
 RUN apt-get install -y build-essential pkg-config autoconf libtool libssl-dev libffi-dev libgmp-dev libsecp256k1-0 libsecp256k1-dev
 
 # Required system tools 
-RUN apt-get install -y git wget
+RUN apt-get install -y git wget curl
 # Additional system tools 
 RUN apt-get install -y vim iputils-ping netcat iproute2 sudo
 
@@ -43,11 +43,11 @@ RUN apt-get install -y vim iputils-ping netcat iproute2 sudo
 # https://github.com/ethereum/solidity/releases/
 RUN cd /usr/local/bin \
   && wget -qO solc https://github.com/ethereum/solidity/releases/download/v0.4.25/solc-static-linux \
-  && wget -qO solc_5.9 https://github.com/ethereum/solidity/releases/download/v0.5.9/solc-static-linux \
+  && wget -qO solc_5.4 https://github.com/ethereum/solidity/releases/download/v0.5.4/solc-static-linux \
   && wget -qO solc_5.10 https://github.com/ethereum/solidity/releases/download/v0.5.10/solc-static-linux \
   && wget -qO solc_5.12 https://github.com/ethereum/solidity/releases/download/v0.5.12/solc-static-linux \
-  && cp solc_5.12 solc \
-  && chmod 755 solc
+  && cp solc_5.4 solc \
+  && chmod 755 solc*
 
 # get current geth version from here for debug tools etc (not mandatory):
 # https://geth.ethereum.org/downloads/#dl_stable_linux
