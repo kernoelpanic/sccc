@@ -3,8 +3,8 @@
 
 # Overview of ubuntu docker images
 #https://hub.docker.com/_/ubuntu
-FROM ubuntu:eoan
-#FROM ubuntu:focal
+#FROM ubuntu:eoan
+FROM ubuntu:focal
 
 WORKDIR /smartcode
 
@@ -21,14 +21,14 @@ RUN useradd -m -u $UID -g $GID -o -s /bin/bash $UNAME
 RUN apt-get update 
 RUN apt-get dist-upgrade -y
 
-# basic python3.7 setup
-# To be explicit and use pip3.7 to install packages  
+# basic python3.8 setup
+# To be explicit and use pip3 to install packages  
 # can be installed by invoking like this:
-# python3.7 -m pip --version    
-RUN apt-get install -y python3.7 python3.7-dev \
+# python3 -m pip --version    
+RUN apt-get install -y python3 python3-dev \
   && apt-get install -y python3-pip \
   && cd /usr/local/bin \
-  && ln -s /usr/bin/python3.7 python 
+  && ln -s /usr/bin/python3 python 
 
 # requirements for building underlying packages when installing required python modules later 
 # e.g., secp256k1 
@@ -44,21 +44,21 @@ RUN apt-get install -y vim iputils-ping netcat iproute2 sudo
 RUN cd /usr/local/bin \
   && wget -qO solc https://github.com/ethereum/solidity/releases/download/v0.4.25/solc-static-linux \
   && wget -qO solc_5.4 https://github.com/ethereum/solidity/releases/download/v0.5.4/solc-static-linux \
-  && wget -qO solc_5.10 https://github.com/ethereum/solidity/releases/download/v0.5.10/solc-static-linux \
-  && wget -qO solc_5.12 https://github.com/ethereum/solidity/releases/download/v0.5.12/solc-static-linux \
+	&& wget -qO solc_7.4 https://github.com/ethereum/solidity/releases/download/v0.7.4/solc-static-linux \
   && cp solc_5.4 solc \
   && chmod 755 solc*
 
 # get current geth version from here for debug tools etc (not mandatory):
 # https://geth.ethereum.org/downloads/#dl_stable_linux
-RUN cd /tmp/ \
-  && wget -q https://gethstore.blob.core.windows.net/builds/geth-alltools-linux-amd64-1.9.6-bd059680.tar.gz \
-  && tar -xzf /tmp/geth-alltools-linux-amd64-1.9.6-bd059680.tar.gz \
-  && cp /tmp/geth-alltools-linux-amd64-1.9.6-bd059680/* /usr/local/bin
+RUN mkdir -p /tmp/gethtools \
+	&& cd /tmp/gethtools \
+  && wget -q https://gethstore.blob.core.windows.net/builds/geth-alltools-linux-amd64-1.9.23-8c2f2715.tar.gz \
+  && tar --strip-components=1 -xzf /tmp/gethtools/*.tar.gz \
+  && cp /tmp/gethtools/* /usr/local/bin
 
 # upgrade pip and install requirements for python3.7 which have been previously added to /smartcode
-RUN python3.7 -m pip install --upgrade pip
-RUN python3.7 -m pip install -r requirements.txt
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install -r requirements.txt
 
 # port jupyter
 EXPOSE 8888
