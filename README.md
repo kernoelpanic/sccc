@@ -1,3 +1,18 @@
+Deprication Warning ⚠
+=====================
+
+This repository has been merged into the *smartenv* repository which can be found here:
+
+* https://github.com/kernoelpanic/smartenv/
+
+The notebook with the crash course can be found here: 
+
+* https://github.com/kernoelpanic/smartenv/blob/main/notebooks/course/sccc.ipynb
+
+The *smartenv* repository also contains some challenges (without solutions) and
+a tutorial on how to deploy them. 
+
+
 Smart Contract Crash Course
 ===========================
 
