@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "NStifter",
+      "name": "Nicholas Stifter",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16758029?v=4",
+      "profile": "https://github.com/NStifter",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "sccc",
+  "projectOwner": "kernoelpanic",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
